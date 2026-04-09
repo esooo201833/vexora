@@ -40,11 +40,11 @@ const UnitDetail = () => {
   const handleWhatsApp = () => {
     const message = `Hello, I'm interested in the property: ${unit.title} (ID: ${unit.id}) priced at ${formatPrice(unit.price)}. Please provide more information.`;
     const encodedMessage = encodeURIComponent(message);
-    window.open(`https://wa.me/201234567890?text=${encodedMessage}`, '_blank');
+    window.open(`https://wa.me/201110182114?text=${encodedMessage}`, '_blank');
   };
 
   const handleCall = () => {
-    window.location.href = 'tel:+201234567890';
+    window.location.href = 'tel:+201110182114';
   };
 
   const handleShare = async () => {
