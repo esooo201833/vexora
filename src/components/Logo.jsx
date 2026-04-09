@@ -7,26 +7,22 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const Logo = ({ className = '', isScrolled = false }) => {
-  // Try to load custom logo from public folder
-  // If logo.png or logo.svg exists, use it. Otherwise fall back to text
-  const logoSrc = '/logo.png'; // User can replace this file
+  const logoSrc = '/logo.jpg';
 
   return (
     <Link to="/" className={`flex items-center space-x-2 ${className}`}>
-      {/* Logo Image - uncomment when user adds logo file */}
-      {/*
       <img 
         src={logoSrc} 
         alt="Vexora" 
-        className="h-10 w-auto object-contain"
+        className="h-10 w-auto object-contain rounded-lg"
         onError={(e) => {
           e.target.style.display = 'none';
+          e.target.nextSibling.style.display = 'flex';
         }}
       />
-      */}
       
       {/* Fallback Logo Design */}
-      <div className="flex items-center">
+      <div className="hidden items-center">
         <div className="w-10 h-10 bg-gradient-to-br from-primary-600 to-gold-500 rounded-lg flex items-center justify-center shadow-lg">
           <span className="text-white font-bold text-xl">V</span>
         </div>
