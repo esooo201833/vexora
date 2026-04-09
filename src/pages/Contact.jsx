@@ -7,7 +7,7 @@ import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { 
-  Phone, Mail, MapPin, Clock, Send, MessageCircle, 
+  Phone, Clock, Send, MessageCircle, 
   CheckCircle, Loader2, User, Building, FileText
 } from 'lucide-react';
 
@@ -17,7 +17,6 @@ const Contact = () => {
 
   const [formData, setFormData] = useState({
     name: '',
-    email: '',
     phone: '',
     unit: initialUnit,
     message: '',
@@ -38,11 +37,6 @@ const Contact = () => {
   const validateForm = () => {
     const newErrors = {};
     if (!formData.name.trim()) newErrors.name = 'Name is required';
-    if (!formData.email.trim()) {
-      newErrors.email = 'Email is required';
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      newErrors.email = 'Please enter a valid email';
-    }
     if (!formData.phone.trim()) newErrors.phone = 'Phone is required';
     if (!formData.message.trim()) newErrors.message = 'Message is required';
     return newErrors;
@@ -62,7 +56,6 @@ const Contact = () => {
     const newMessage = {
       id: Date.now(),
       name: formData.name,
-      email: formData.email,
       phone: formData.phone,
       unit: formData.unit,
       message: formData.message,
@@ -80,7 +73,6 @@ const Contact = () => {
     setIsSubmitted(true);
     setFormData({
       name: '',
-      email: '',
       phone: '',
       unit: '',
       message: '',
@@ -90,34 +82,20 @@ const Contact = () => {
   const handleWhatsApp = () => {
     const message = `Hello Vexora Team, I'm interested in learning more about your properties. Please contact me.`;
     const encodedMessage = encodeURIComponent(message);
-    window.open(`https://wa.me/201234567890?text=${encodedMessage}`, '_blank');
+    window.open(`https://wa.me/201110182114?text=${encodedMessage}`, '_blank');
   };
 
   const handleCall = () => {
-    window.location.href = 'tel:+201234567890';
+    window.location.href = 'tel:+201110182114';
   };
 
   const contactInfo = [
     {
       icon: Phone,
-      title: 'Phone',
-      content: '+20 123 456 7890',
+      title: 'Phone / WhatsApp',
+      content: '+20 111 018 2114',
       action: handleCall,
       actionLabel: 'Call Now',
-    },
-    {
-      icon: Mail,
-      title: 'Email',
-      content: 'info@vexora.com',
-      action: () => window.location.href = 'mailto:info@vexora.com',
-      actionLabel: 'Send Email',
-    },
-    {
-      icon: MapPin,
-      title: 'Office',
-      content: '123 Real Estate Street, New Cairo, Egypt',
-      action: null,
-      actionLabel: null,
     },
     {
       icon: Clock,
@@ -252,46 +230,25 @@ const Contact = () => {
                   </p>
 
                   <form onSubmit={handleSubmit} className="space-y-6">
-                    {/* Name & Email */}
-                    <div className="grid md:grid-cols-2 gap-6">
-                      <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">
-                          <User className="w-4 h-4 inline mr-2" />
-                          Full Name *
-                        </label>
-                        <input
-                          type="text"
-                          name="name"
-                          value={formData.name}
-                          onChange={handleChange}
-                          className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors ${
-                            errors.name ? 'border-red-500' : 'border-gray-200'
-                          }`}
-                          placeholder="John Doe"
-                        />
-                        {errors.name && (
-                          <p className="text-red-500 text-sm mt-1">{errors.name}</p>
-                        )}
-                      </div>
-                      <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">
-                          <Mail className="w-4 h-4 inline mr-2" />
-                          Email Address *
-                        </label>
-                        <input
-                          type="email"
-                          name="email"
-                          value={formData.email}
-                          onChange={handleChange}
-                          className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors ${
-                            errors.email ? 'border-red-500' : 'border-gray-200'
-                          }`}
-                          placeholder="john@example.com"
-                        />
-                        {errors.email && (
-                          <p className="text-red-500 text-sm mt-1">{errors.email}</p>
-                        )}
-                      </div>
+                    {/* Name */}
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                        <User className="w-4 h-4 inline mr-2" />
+                        Full Name *
+                      </label>
+                      <input
+                        type="text"
+                        name="name"
+                        value={formData.name}
+                        onChange={handleChange}
+                        className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors ${
+                          errors.name ? 'border-red-500' : 'border-gray-200'
+                        }`}
+                        placeholder="John Doe"
+                      />
+                      {errors.name && (
+                        <p className="text-red-500 text-sm mt-1">{errors.name}</p>
+                      )}
                     </div>
 
                     {/* Phone & Unit */}

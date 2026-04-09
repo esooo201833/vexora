@@ -5,13 +5,17 @@
 
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { 
-  LayoutDashboard, MessageSquare, Building2, Users, 
-  Search, Eye, Trash2, CheckCircle, XCircle, 
-  ChevronLeft, ChevronRight, Mail, Phone, Calendar
+  MessageSquare, Building2, 
+  Search, Eye, Trash2, CheckCircle, Mail,
+  ChevronLeft, ChevronRight, Phone, Calendar,
+  LogIn, Lock, User, LogOut
 } from 'lucide-react';
 import { units } from '../data/units';
+
+const ADMIN_EMAIL = 'admin@test.com';
+const ADMIN_PASSWORD = '33145612';
 
 // Mock messages data - in production, this would come from a backend
 const MOCK_MESSAGES = [
@@ -20,12 +24,40 @@ const MOCK_MESSAGES = [
 ];
 
 const Admin = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [loginForm, setLoginForm] = useState({ email: '', password: '' });
+  const [loginError, setLoginError] = useState('');
   const [activeTab, setActiveTab] = useState('messages');
   const [messages, setMessages] = useState(MOCK_MESSAGES);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedMessage, setSelectedMessage] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
+
+  // Check if already logged in
+  useEffect(() => {
+    const loggedIn = localStorage.getItem('adminLoggedIn');
+    if (loggedIn === 'true') {
+      setIsLoggedIn(true);
+    }
+  }, []);
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    if (loginForm.email === ADMIN_EMAIL && loginForm.password === ADMIN_PASSWORD) {
+      setIsLoggedIn(true);
+      localStorage.setItem('adminLoggedIn', 'true');
+      setLoginError('');
+    } else {
+      setLoginError('Invalid email or password');
+    }
+  };
+
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+    localStorage.removeItem('adminLoggedIn');
+    setLoginForm({ email: '', password: '' });
+  };
 
   // Load messages from localStorage
   useEffect(() => {
@@ -78,13 +110,86 @@ const Admin = () => {
     (activeTab === 'messages' ? filteredMessages.length : filteredUnits.length) / itemsPerPage
   );
 
+  // Login Screen
+  if (!isLoggedIn) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center pt-20">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="bg-white rounded-2xl shadow-xl p-8 w-full max-w-md"
+        >
+          <div className="text-center mb-8">
+            <div className="w-16 h-16 bg-gradient-to-br from-primary-600 to-primary-800 rounded-2xl flex items-center justify-center mx-auto mb-4">
+              <Lock className="w-8 h-8 text-white" />
+            </div>
+            <h1 className="text-2xl font-bold text-gray-900">Admin Login</h1>
+            <p className="text-gray-600 mt-2">Enter your credentials to access the dashboard</p>
+          </div>
+
+          <form onSubmit={handleLogin} className="space-y-6">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                <User className="w-4 h-4 inline mr-2" />
+                Email
+              </label>
+              <input
+                type="email"
+                value={loginForm.email}
+                onChange={(e) => setLoginForm({ ...loginForm, email: e.target.value })}
+                className="w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                placeholder="admin@test.com"
+                required
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                <Lock className="w-4 h-4 inline mr-2" />
+                Password
+              </label>
+              <input
+                type="password"
+                value={loginForm.password}
+                onChange={(e) => setLoginForm({ ...loginForm, password: e.target.value })}
+                className="w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                placeholder="••••••••"
+                required
+              />
+            </div>
+            {loginError && (
+              <p className="text-red-500 text-sm">{loginError}</p>
+            )}
+            <motion.button
+              type="submit"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              className="w-full flex items-center justify-center space-x-2 bg-primary-600 text-white py-3 rounded-xl font-semibold hover:bg-primary-700 transition-colors"
+            >
+              <LogIn className="w-5 h-5" />
+              <span>Login</span>
+            </motion.button>
+          </form>
+        </motion.div>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-gray-50 pt-20">
       {/* Header */}
       <div className="bg-gradient-to-r from-primary-600 to-primary-800 py-8">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="text-3xl font-bold text-white">Admin Dashboard</h1>
-          <p className="text-white/80 mt-2">Manage messages and properties</p>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+          <div>
+            <h1 className="text-3xl font-bold text-white">Admin Dashboard</h1>
+            <p className="text-white/80 mt-2">Manage messages and properties</p>
+          </div>
+          <button
+            onClick={handleLogout}
+            className="flex items-center space-x-2 px-4 py-2 bg-white/20 hover:bg-white/30 text-white rounded-lg transition-colors"
+          >
+            <LogOut className="w-5 h-5" />
+            <span>Logout</span>
+          </button>
         </div>
       </div>
 
@@ -173,10 +278,6 @@ const Admin = () => {
                             <span className="px-2 py-1 bg-blue-100 text-blue-600 text-xs rounded-full">New</span>
                           )}
                         </div>
-                        <p className="text-sm text-gray-600 mb-1">
-                          <Mail className="w-4 h-4 inline mr-1" />
-                          {message.email}
-                        </p>
                         <p className="text-sm text-gray-600 mb-1">
                           <Phone className="w-4 h-4 inline mr-1" />
                           {message.phone}

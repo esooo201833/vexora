@@ -5,9 +5,10 @@
 
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { Search, Filter, Grid3X3, List, MapPin, X, ChevronLeft, ChevronRight } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { Search, Filter, Grid3X3, List, X } from 'lucide-react';
 import UnitCard from '../components/UnitCard';
-import { units, getTypes, getCities, filterUnits, formatPrice } from '../data/units';
+import { units, getTypes, getCities } from '../data/units';
 
 const Units = () => {
   const location = useLocation();
