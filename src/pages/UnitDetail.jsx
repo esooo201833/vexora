@@ -346,38 +346,6 @@ const UnitDetail = () => {
                 </div>
               </div>
 
-              {/* Agent Card */}
-              <div className="bg-white rounded-2xl shadow-sm p-6">
-                <h3 className="font-semibold text-gray-900 mb-4">Contact Agent</h3>
-                <div className="flex items-center space-x-4 mb-4">
-                  <img
-                    src="https://i.pravatar.cc/150?img=11"
-                    alt="Agent"
-                    className="w-16 h-16 rounded-full object-cover"
-                  />
-                  <div>
-                    <p className="font-semibold text-gray-900">Ahmed Hassan</p>
-                    <p className="text-sm text-gray-500">Property Consultant</p>
-                    <div className="flex items-center mt-1">
-                      <CheckCircle className="w-4 h-4 text-green-500 mr-1" />
-                      <span className="text-xs text-green-600">Verified Agent</span>
-                    </div>
-                  </div>
-                </div>
-                <p className="text-sm text-gray-600 mb-4">
-                  Available for viewings and inquiries. Contact me for more information about this property.
-                </p>
-                <div className="text-sm text-gray-500">
-                  <p className="flex items-center mb-1">
-                    <Phone className="w-4 h-4 mr-2" />
-                    +20 123 456 7890
-                  </p>
-                  <p className="flex items-center">
-                    <Mail className="w-4 h-4 mr-2" />
-                    ahmed@vexora.com
-                  </p>
-                </div>
-              </div>
             </motion.div>
           </div>
         </div>
