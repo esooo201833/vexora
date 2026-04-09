@@ -31,6 +31,7 @@ const Navbar = () => {
     { to: '/', label: 'Home', icon: Home },
     { to: '/units', label: 'Units', icon: Building2 },
     { to: '/contact', label: 'Contact', icon: Phone },
+    { to: '/admin', label: 'Admin', icon: Building2 },
   ];
 
   const isActive = (path) => location.pathname === path;

@@ -11,6 +11,7 @@ import Home from './pages/Home';
 import Units from './pages/Units';
 import UnitDetail from './pages/UnitDetail';
 import Contact from './pages/Contact';
+import Admin from './pages/Admin';
 import './App.css';
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
             <Route path="/units" element={<Units />} />
             <Route path="/unit/:id" element={<UnitDetail />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/admin" element={<Admin />} />
             {/* Catch-all route for 404 */}
             <Route path="*" element={
               <div className="min-h-screen flex items-center justify-center">

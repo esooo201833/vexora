@@ -58,8 +58,23 @@ const Contact = () => {
 
     setIsSubmitting(true);
     
+    // Save message to localStorage
+    const newMessage = {
+      id: Date.now(),
+      name: formData.name,
+      email: formData.email,
+      phone: formData.phone,
+      unit: formData.unit,
+      message: formData.message,
+      date: new Date().toISOString().split('T')[0],
+      status: 'unread'
+    };
+    
+    const existingMessages = JSON.parse(localStorage.getItem('contactMessages') || '[]');
+    localStorage.setItem('contactMessages', JSON.stringify([newMessage, ...existingMessages]));
+    
     // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1500));
+    await new Promise((resolve) => setTimeout(resolve, 1000));
     
     setIsSubmitting(false);
     setIsSubmitted(true);

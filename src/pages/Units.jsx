@@ -5,8 +5,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import { Search, Filter, Grid3X3, List, MapPin, X } from 'lucide-react';
+import { Search, Filter, Grid3X3, List, MapPin, X, ChevronLeft, ChevronRight } from 'lucide-react';
 import UnitCard from '../components/UnitCard';
 import { units, getTypes, getCities, filterUnits, formatPrice } from '../data/units';
 
@@ -15,6 +14,7 @@ const Units = () => {
   const [filteredUnits, setFilteredUnits] = useState(units);
   const [viewMode, setViewMode] = useState('grid');
   const [showFilters, setShowFilters] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
   const [filters, setFilters] = useState({
     search: '',
     minPrice: '',
@@ -24,6 +24,7 @@ const Units = () => {
     bedrooms: '',
     status: '',
   });
+  const itemsPerPage = 24;
 
   const types = getTypes();
   const cities = getCities();
@@ -39,6 +40,7 @@ const Units = () => {
 
   // Apply filters whenever they change
   useEffect(() => {
+    setCurrentPage(1); // Reset to first page when filters change
     let result = units;
 
     // Text search
@@ -82,6 +84,18 @@ const Units = () => {
 
     setFilteredUnits(result);
   }, [filters]);
+
+  // Pagination logic
+  const totalPages = Math.ceil(filteredUnits.length / itemsPerPage);
+  const paginatedUnits = filteredUnits.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   const handleFilterChange = (key, value) => {
     setFilters((prev) => ({ ...prev, [key]: value }));
@@ -324,16 +338,56 @@ const Units = () => {
                     : 'grid-cols-1'
                 }`}
               >
-                {filteredUnits.map((unit, index) => (
-                  <motion.div
-                    key={unit.id}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: index * 0.05 }}
-                  >
-                    <UnitCard unit={unit} />
-                  </motion.div>
+                {paginatedUnits.map((unit) => (
+                  <UnitCard key={unit.id} unit={unit} />
                 ))}
+              </div>
+            )}
+            
+            {/* Pagination */}
+            {totalPages > 1 && (
+              <div className="flex items-center justify-center mt-8 space-x-2">
+                <button
+                  onClick={() => handlePageChange(currentPage - 1)}
+                  disabled={currentPage === 1}
+                  className="px-4 py-2 border rounded-lg disabled:opacity-50 hover:bg-gray-50 transition-colors"
+                >
+                  Previous
+                </button>
+                <div className="flex space-x-1">
+                  {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
+                    let pageNum;
+                    if (totalPages <= 5) {
+                      pageNum = i + 1;
+                    } else if (currentPage <= 3) {
+                      pageNum = i + 1;
+                    } else if (currentPage >= totalPages - 2) {
+                      pageNum = totalPages - 4 + i;
+                    } else {
+                      pageNum = currentPage - 2 + i;
+                    }
+                    return (
+                      <button
+                        key={pageNum}
+                        onClick={() => handlePageChange(pageNum)}
+                        className={`w-10 h-10 rounded-lg transition-colors ${
+                          currentPage === pageNum
+                            ? 'bg-primary-600 text-white'
+                            : 'border hover:bg-gray-50'
+                        }`}
+                      >
+                        {pageNum}
+                      </button>
+                    );
+                  })}
+                </div>
+                <button
+                  onClick={() => handlePageChange(currentPage + 1)}
+                  disabled={currentPage === totalPages}
+                  className="px-4 py-2 border rounded-lg disabled:opacity-50 hover:bg-gray-50 transition-colors"
+                >
+                  Next
+                </button>
               </div>
             )}
           </div>
