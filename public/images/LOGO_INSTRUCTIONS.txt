@@ -1,0 +1,22 @@
+LOGO UPLOAD INSTRUCTIONS
+=========================
+
+To display your custom Vexora logo throughout the website:
+
+1. Upload your logo image file to this folder (public/images/)
+2. Name the file exactly: vexora-logo.png
+3. Recommended specifications:
+   - Format: PNG with transparent background
+   - Size: At least 200x200 pixels
+   - Aspect ratio: Square or wide rectangle
+
+The logo will automatically appear in:
+- Header navigation bar
+- Site footer
+- Favicon (when properly configured)
+
+Until the logo is uploaded, the site displays a stylish "V" placeholder with gradient colors matching the Vexora brand.
+
+If you have a different logo format or filename, you can update the reference in:
+- src/components/Navbar.jsx
+- src/components/Footer.jsx

@@ -1,0 +1,281 @@
+[
+  {
+    "url": "https://api.app.byitcorp.com/api/v1/countries/withoutPagenation/get?countryCoverage=true",
+    "data": {
+      "success": true,
+      "data": [
+        {
+          "name": "Egypt",
+          "name_en": "Egypt",
+          "name_ar": "مصر",
+          "countryCode": "+20",
+          "isoCode": "EGY",
+          "numbersCount": 10,
+          "hint": "EGY",
+          "img": "https://api.ahyateams.yap-app.com/uploads/651a4ed1-8cea-47c6-9bb1-55d50968c456.png",
+          "id": 50,
+          "currency": {
+            "name_en": "Egyptain Pound",
+            "name_ar": "جنيه مصري",
+            "symbol_en": "EGP",
+            "symbol_ar": "ج.م"
+          },
+          "isDefault": true,
+          "areaUnit": "SQM"
+        },
+        {
+          "name": "United Arab Emirates",
+          "name_en": "United Arab Emirates",
+          "name_ar": "الإمارات العربية المتحدة",
+          "countryCode": "+971",
+          "isoCode": "ARE",
+          "numbersCount": 0,
+          "hint": "ARE",
+          "img": "https://res.cloudinary.com/boody-car/image/upload/v1682944989/mjzkczbgrfpu6semsjy6.png",
+          "id": 7,
+          "currency": {},
+          "areaUnit": "SQM"
+        }
+      ]
+    }
+  },
+  {
+    "url": "https://api.app.byitcorp.com/api/v1/about",
+    "data": {
+      "success": true,
+      "data": {
+        "whatsapp": "https://info.byitcorp.com/Whatsapp_Official_Channel",
+        "website": "https://byitcorp.com",
+        "deleted": false,
+        "_id": 1,
+        "aboutUs_ar": "نعمل علي اعادة تحقيق التوازن في سوق العقارات , وفتح الفرصة للجميع للحصول علي حصة عادلة من هذه الصناعة المزدهرة .\n مع مجموعة متنوعة من الخطط ,قمنا بتصميم العديد من ادوات الأعمال لتناسب كل شخص مهتم بتوليد مصدر اضافي للدخل \nتقوم بالتسجيل في شركتنا كبائع مستقل , وتحصل علي كل الدعم من خلال منصتنا لأغلاق صفقاتك بمفردك. \nنحن نرسل لك المواد و المعلومات ونرتب لك الاجتماعات مع المسؤولين عن المبيعات لمئات المشروعات في القاهرة الجديدة و أكتوبر و الساحل و السخنة و البحر الأحمر \nستحصل علي كل الدعم الإداري و القانوني اللازم لإتمام الصفقة مع عميلك ,ونسبة عمولتك ستتراوح بين 80% و 90% من صافي العمولة , و هي أعلي نسبة في السوق.",
+        "aboutUs_en": "We are committed to restoring balance in the real estate brokerage market, creating opportunities for everyone to benefit from this booming industry.\nWith a diverse range of programs, we have developed various business tools designed to meet the needs of those interested in generating an additional source of income.\nWhen you sign up with Byit as an Independent Sales Representative, you will receive all the support you need from our platform to successfully close deals on your own.\nWe provide you with materials, CILS, and help arrange meetings with the sales team responsible for hundreds of projects in areas such as New Cairo, October, Sahel, Sokhna, and the Red Sea.\nWe will provide you with all the necessary administrative and legal support to help you close the deal with your client.\nYour commission will range from 80% to 90% of the net commission, ensuring you receive one of the highest market shares.",
+        "facebook": "https://facebook.com/byitapp",
+        "instagram": "https://instagram.com/byit.app",
+        "phone": "01223666683",
+        "createdAt": "2023-02-10T15:40:55.623Z",
+        "updatedAt": "2025-11-11T18:35:02.950Z",
+        "__v": 0,
+        "country": 50
+      }
+    }
+  },
+  {
+    "url": "https://api.app.byitcorp.com/api/v1/setting",
+    "data": {
+      "success": true,
+      "data": {
+        "iosAppVersion": "2.3.7",
+        "androidAppVersion": "2.0.9",
+        "nawyLogo": "https://api.ahyateams.yap-app.com/uploads/39aa3183-3d37-4998-b851-696bd6bdcdd6.jpg",
+        "customerServicePhone": "01223666683",
+        "cilPhone": "+201222369013",
+        "contractPhone": "+201222365309",
+        "closingSupportPhone": "+201222369023",
+        "coveragePhone": "+201222369023",
+        "totalDeals": 526,
+        "force": true,
+        "targetStartDate": "2026-04-01T00:00:00.000Z",
+        "targetEndDate": "2026-06-30T00:00:00.000Z",
+        "targetAchievementLogo": "https://api.app.byitcorp.com/uploads/38f40aca-87a6-4c37-b841-d6b398523334.jpeg",
+        "targetAchievementBackground": "https://api.ahyateams.yap-app.com/uploads/503ad37d-696d-4ada-95d6-29eead332a47.png",
+        "targetAchievementInfo": "https://api.app.byitcorp.com/uploads/b381e09f-1048-47e4-8627-08c794d4509f.JPEG",
+        "enableTargetAchievement": true,
+        "showSeparate": false,
+        "monthMeetingsEarns": 5000,
+        "id": 1,
+        "targetPoints": [
+          {
+            "prize": {
+              "name": "ايفون ١٧ برو ماكس",
+              "img": "https://api.app.byitcorp.com/uploads/2fb57a36-99da-4026-8b1d-2d448e07d6c1.png",
+              "id": 15
+            },
+            "point": 100
+          },
+          {
+            "prize": {
+              "name": "٤ جنية ذهب",
+              "img": "https://api.app.byitcorp.com/uploads/dd8c8300-634b-4dc5-9cdf-cb9db0066ac2.jpeg",
+              "id": 14
+            },
+            "point": 200
+          },
+          {
+            "prize": {
+              "name": "مجموعة ابل",
+              "img": "https://api.app.byitcorp.com/uploads/4adf13cd-c529-40fe-bf33-3313fb50496a.png",
+              "id": 13
+            },
+            "point": 300
+          },
+          {
+            "prize": {
+              "name": "٦ جنية ذهب",
+              "img": "https://api.app.byitcorp.com/uploads/9ab91d5e-b3ea-4b0d-ba40-de7f00792dea.jpeg",
+              "id": 12
+            },
+            "point": 400
+          },
+          {
+            "prize": {
+              "name": "رولكس صاب مارنر",
+              "img": "https://api.app.byitcorp.com/uploads/c99d98d5-adc1-45ea-a068-f7bd5f645f96.jpeg",
+              "id": 11
+            },
+            "point": 500
+          },
+          {
+            "prize": {
+              "name": "١٠ جنية ذهب",
+              "img": "https://api.app.byitcorp.com/uploads/4f3222b1-b3db-436e-a4ed-a4cfe9642738.jpeg",
+              "id": 19
+            },
+            "point": 600
+          },
+          {
+            "prize": {
+              "name": "بروتون ساجا",
+              "img": "https://api.app.byitcorp.com/uploads/625bc518-64ae-4e6d-8a07-5eb44afbdd37.jpeg",
+              "id": 20
+            },
+            "point": 700
+          },
+          {
+            "prize": {
+              "name": "سبيكة ذهب ١٠٠ جر ام",
+              "img": "https://api.app.byitcorp.com/uploads/0c60259d-e96a-4f77-9957-5ef543c41da7.jpeg",
+              "id": 21
+            },
+            "point": 800
+          },
+          {
+            "prize": {
+              "name": "ام جي 5",
+              "img": "https://api.app.byitcorp.com/uploads/5b0a6cd5-ae41-4104-a67b-395bf99b8953.jpeg",
+              "id": 22
+            },
+            "point": 900
+          },
+          {
+            "prize": {
+              "name": "٢ مليون كاش",
+              "img": "https://api.app.byitcorp.com/uploads/ebb16c16-af1e-44f6-b7c5-1b307caf30d9.png",
+              "id": 23
+            },
+            "point": 1000
+          }
+        ]
+      }
+    }
+  },
+  {
+    "url": "https://api.app.byitcorp.com/api/v1/setting",
+    "data": {
+      "success": true,
+      "data": {
+        "iosAppVersion": "2.3.7",
+        "androidAppVersion": "2.0.9",
+        "nawyLogo": "https://api.ahyateams.yap-app.com/uploads/39aa3183-3d37-4998-b851-696bd6bdcdd6.jpg",
+        "customerServicePhone": "01223666683",
+        "cilPhone": "+201222369013",
+        "contractPhone": "+201222365309",
+        "closingSupportPhone": "+201222369023",
+        "coveragePhone": "+201222369023",
+        "totalDeals": 526,
+        "force": true,
+        "targetStartDate": "2026-04-01T00:00:00.000Z",
+        "targetEndDate": "2026-06-30T00:00:00.000Z",
+        "targetAchievementLogo": "https://api.app.byitcorp.com/uploads/38f40aca-87a6-4c37-b841-d6b398523334.jpeg",
+        "targetAchievementBackground": "https://api.ahyateams.yap-app.com/uploads/503ad37d-696d-4ada-95d6-29eead332a47.png",
+        "targetAchievementInfo": "https://api.app.byitcorp.com/uploads/b381e09f-1048-47e4-8627-08c794d4509f.JPEG",
+        "enableTargetAchievement": true,
+        "showSeparate": false,
+        "monthMeetingsEarns": 5000,
+        "id": 1,
+        "targetPoints": [
+          {
+            "prize": {
+              "name": "IPhone 17 Pro Max",
+              "img": "https://api.app.byitcorp.com/uploads/2fb57a36-99da-4026-8b1d-2d448e07d6c1.png",
+              "id": 15
+            },
+            "point": 100
+          },
+          {
+            "prize": {
+              "name": "4 Gold Coins",
+              "img": "https://api.app.byitcorp.com/uploads/dd8c8300-634b-4dc5-9cdf-cb9db0066ac2.jpeg",
+              "id": 14
+            },
+            "point": 200
+          },
+          {
+            "prize": {
+              "name": "Apple Kit",
+              "img": "https://api.app.byitcorp.com/uploads/4adf13cd-c529-40fe-bf33-3313fb50496a.png",
+              "id": 13
+            },
+            "point": 300
+          },
+          {
+            "prize": {
+              "name": "6 Gold Coins",
+              "img": "https://api.app.byitcorp.com/uploads/9ab91d5e-b3ea-4b0d-ba40-de7f00792dea.jpeg",
+              "id": 12
+            },
+            "point": 400
+          },
+          {
+            "prize": {
+              "name": "Rolex Sub Mariner",
+              "img": "https://api.app.byitcorp.com/uploads/c99d98d5-adc1-45ea-a068-f7bd5f645f96.jpeg",
+              "id": 11
+            },
+            "point": 500
+          },
+          {
+            "prize": {
+              "name": "10 Gold Coins",
+              "img": "https://api.app.byitcorp.com/uploads/4f3222b1-b3db-436e-a4ed-a4cfe9642738.jpeg",
+              "id": 19
+            },
+            "point": 600
+          },
+          {
+            "prize": {
+              "name": "Proton Saga",
+              "img": "https://api.app.byitcorp.com/uploads/625bc518-64ae-4e6d-8a07-5eb44afbdd37.jpeg",
+              "id": 20
+            },
+            "point": 700
+          },
+          {
+            "prize": {
+              "name": "100 gm Gold Bar",
+              "img": "https://api.app.byitcorp.com/uploads/0c60259d-e96a-4f77-9957-5ef543c41da7.jpeg",
+              "id": 21
+            },
+            "point": 800
+          },
+          {
+            "prize": {
+              "name": "MG 5",
+              "img": "https://api.app.byitcorp.com/uploads/5b0a6cd5-ae41-4104-a67b-395bf99b8953.jpeg",
+              "id": 22
+            },
+            "point": 900
+          },
+          {
+            "prize": {
+              "name": "2 Million Cash",
+              "img": "https://api.app.byitcorp.com/uploads/ebb16c16-af1e-44f6-b7c5-1b307caf30d9.png",
+              "id": 23
+            },
+            "point": 1000
+          }
+        ]
+      }
+    }
+  }
+]
