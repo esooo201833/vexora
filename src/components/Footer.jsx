@@ -6,7 +6,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { MapPin, Phone, Mail, Globe, Camera, Briefcase, MessageCircle, Home, Building2, PhoneCall } from 'lucide-react';
+import { Phone, Globe, Camera, Briefcase, MessageCircle, Home, Building2, PhoneCall } from 'lucide-react';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -41,10 +41,7 @@ const Footer = () => {
           {/* Brand Column */}
           <div className="space-y-4">
             <Link to="/" className="flex items-center space-x-2">
-              <div className="w-10 h-10 bg-gradient-to-br from-primary-600 to-gold-500 rounded-lg flex items-center justify-center shadow-lg">
-                <span className="text-white font-bold text-xl">V</span>
-              </div>
-              <span className="text-2xl font-bold text-white">Vexora</span>
+              <img src="/logo.jpg" alt="Vexora" className="h-12 w-auto object-contain rounded-lg" />
             </Link>
             <p className="text-sm leading-relaxed">
               Your trusted partner in finding the perfect property. We connect you with premium real estate across Egypt.
@@ -105,20 +102,16 @@ const Footer = () => {
           <div>
             <h3 className="text-white font-semibold text-lg mb-4">Contact Us</h3>
             <ul className="space-y-3">
-              <li className="flex items-start space-x-3">
-                <MapPin className="w-5 h-5 text-gold-400 mt-0.5 flex-shrink-0" />
-                <span className="text-sm">123 Real Estate Street, New Cairo, Egypt</span>
-              </li>
               <li className="flex items-center space-x-3">
                 <Phone className="w-5 h-5 text-gold-400 flex-shrink-0" />
-                <a href="tel:+201234567890" className="text-sm hover:text-white transition-colors">
-                  +20 123 456 7890
+                <a href="tel:+201110182114" className="text-sm hover:text-white transition-colors">
+                  +20 111 018 2114
                 </a>
               </li>
               <li className="flex items-center space-x-3">
-                <Mail className="w-5 h-5 text-gold-400 flex-shrink-0" />
-                <a href="mailto:info@vexora.com" className="text-sm hover:text-white transition-colors">
-                  info@vexora.com
+                <Phone className="w-5 h-5 text-gold-400 flex-shrink-0" />
+                <a href="https://wa.me/201110182114" className="text-sm hover:text-white transition-colors">
+                  WhatsApp: +20 111 018 2114
                 </a>
               </li>
             </ul>
