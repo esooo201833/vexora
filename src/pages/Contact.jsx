@@ -10,9 +10,11 @@ import {
   Phone, Clock, Send, MessageCircle, 
   CheckCircle, Loader2, User, Building, FileText
 } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 const Contact = () => {
   const location = useLocation();
+  const { t, isRTL } = useLanguage();
   const initialUnit = location.state?.unitTitle || '';
 
   const [formData, setFormData] = useState({
@@ -36,9 +38,9 @@ const Contact = () => {
 
   const validateForm = () => {
     const newErrors = {};
-    if (!formData.name.trim()) newErrors.name = 'Name is required';
-    if (!formData.phone.trim()) newErrors.phone = 'Phone is required';
-    if (!formData.message.trim()) newErrors.message = 'Message is required';
+    if (!formData.name.trim()) newErrors.name = isRTL ? 'الاسم مطلوب' : 'Name is required';
+    if (!formData.phone.trim()) newErrors.phone = isRTL ? 'رقم الهاتف مطلوب' : 'Phone is required';
+    if (!formData.message.trim()) newErrors.message = isRTL ? 'الرسالة مطلوبة' : 'Message is required';
     return newErrors;
   };
 
