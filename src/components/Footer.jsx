@@ -7,23 +7,25 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Phone, Globe, Camera, Briefcase, MessageCircle, Home, Building2, PhoneCall } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
+  const { t } = useLanguage();
 
   const quickLinks = [
-    { to: '/', label: 'Home', icon: Home },
-    { to: '/units', label: 'Browse Units', icon: Building2 },
-    { to: '/contact', label: 'Contact Us', icon: PhoneCall },
+    { to: '/', label: t('home'), icon: Home },
+    { to: '/units', label: t('browseUnits'), icon: Building2 },
+    { to: '/contact', label: t('contactUs'), icon: PhoneCall },
   ];
 
   const propertyTypes = [
-    'Villa',
-    'Apartment',
-    'Chalet',
-    'Penthouse',
-    'Commercial',
-    'Office',
+    t('villa'),
+    t('apartment'),
+    t('chalet'),
+    t('penthouse'),
+    t('commercial'),
+    t('office'),
   ];
 
   const socialLinks = [
@@ -44,7 +46,7 @@ const Footer = () => {
               <img src="/logo.jpg" alt="Vexora" className="h-12 w-auto object-contain rounded-lg" />
             </Link>
             <p className="text-sm leading-relaxed">
-              Your trusted partner in finding the perfect property. We connect you with premium real estate across Egypt.
+              {t('footerText')}
             </p>
             {/* Social Links */}
             <div className="flex items-center space-x-3 pt-2">
@@ -65,7 +67,7 @@ const Footer = () => {
 
           {/* Quick Links */}
           <div>
-            <h3 className="text-white font-semibold text-lg mb-4">Quick Links</h3>
+            <h3 className="text-white font-semibold text-lg mb-4">{t('quickLinks')}</h3>
             <ul className="space-y-2">
               {quickLinks.map((link) => (
                 <li key={link.to}>
@@ -83,7 +85,7 @@ const Footer = () => {
 
           {/* Property Types */}
           <div>
-            <h3 className="text-white font-semibold text-lg mb-4">Property Types</h3>
+            <h3 className="text-white font-semibold text-lg mb-4">{t('propertyTypes')}</h3>
             <ul className="space-y-2">
               {propertyTypes.map((type) => (
                 <li key={type}>
@@ -100,7 +102,7 @@ const Footer = () => {
 
           {/* Contact Info */}
           <div>
-            <h3 className="text-white font-semibold text-lg mb-4">Contact Us</h3>
+            <h3 className="text-white font-semibold text-lg mb-4">{t('contactUs')}</h3>
             <ul className="space-y-3">
               <li className="flex items-center space-x-3">
                 <Phone className="w-5 h-5 text-gold-400 flex-shrink-0" />
