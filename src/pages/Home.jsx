@@ -9,37 +9,39 @@ import { motion } from 'framer-motion';
 import { ArrowRight, Home as HomeIcon, Users, Award, MapPin, CheckCircle, Building, Phone } from 'lucide-react';
 import UnitCard from '../components/UnitCard';
 import { units, getFeaturedUnits } from '../data/units';
+import { useLanguage } from '../context/LanguageContext';
 
 const Home = () => {
   const featuredUnits = getFeaturedUnits();
+  const { t, isRTL } = useLanguage();
 
   const stats = [
-    { icon: Building, value: '500+', label: 'Properties Listed' },
-    { icon: Users, value: '1000+', label: 'Happy Clients' },
-    { icon: Award, value: '12+', label: 'Years Experience' },
-    { icon: MapPin, value: '50+', label: 'Cities Covered' },
+    { icon: Building, value: '500+', label: t('propertiesListed') },
+    { icon: Users, value: '1000+', label: t('happyClients') },
+    { icon: Award, value: '12+', label: t('yearsExperience') },
+    { icon: MapPin, value: '50+', label: t('citiesCovered') },
   ];
 
   const features = [
     {
       icon: HomeIcon,
-      title: 'Premium Properties',
-      description: 'Access to exclusive listings in prime locations across Egypt.',
+      title: t('premiumProperties'),
+      description: t('expertGuidance'),
     },
     {
       icon: Users,
-      title: 'Expert Guidance',
-      description: 'Professional agents to help you make informed decisions.',
+      title: t('expertGuidance'),
+      description: t('trustedPartners'),
     },
     {
       icon: CheckCircle,
-      title: 'Trusted Partners',
-      description: 'Verified developers and secure transaction processes.',
+      title: t('trustedPartners'),
+      description: t('bestDeals'),
     },
     {
       icon: Award,
-      title: 'Best Deals',
-      description: 'Competitive prices and flexible payment plans.',
+      title: t('bestDeals'),
+      description: t('competitive prices and flexible payment plans'),
     },
   ];
 
@@ -66,7 +68,7 @@ const Home = () => {
               transition={{ duration: 0.6 }}
             >
               <span className="inline-block px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full text-white text-sm font-medium mb-6">
-                Welcome to Vexora Estates
+                {t('welcome')}
               </span>
             </motion.div>
 
@@ -74,20 +76,19 @@ const Home = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight"
+              className={`text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight ${isRTL ? 'text-right' : ''}`}
             >
-              Find Your
-              <span className="block text-gold-400">Dream Home</span>
+              {t('findYour')}
+              <span className="block text-primary-300">{t('dreamHome')}</span>
             </motion.h1>
 
             <motion.p
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-xl text-white/90 mb-8 max-w-lg"
+              className={`text-xl text-white/90 mb-8 max-w-lg ${isRTL ? 'text-right' : ''}`}
             >
-              Discover premium properties across Egypt's most sought-after locations. 
-              Your perfect home is just a click away.
+              {t('discover')}
             </motion.p>
 
             <motion.div
@@ -102,18 +103,18 @@ const Home = () => {
                   whileTap={{ scale: 0.95 }}
                   className="flex items-center justify-center space-x-2 bg-primary-600 text-white px-8 py-4 rounded-xl font-semibold hover:bg-primary-700 transition-colors shadow-lg"
                 >
-                  <span>Browse Properties</span>
-                  <ArrowRight className="w-5 h-5" />
+                  <span>{t('browseProperties')}</span>
+                  <ArrowRight className={`w-5 h-5 ${isRTL ? 'rotate-180' : ''}`} />
                 </motion.button>
               </Link>
               <Link to="/contact">
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="flex items-center justify-center space-x-2 bg-white text-gray-900 px-8 py-4 rounded-xl font-semibold hover:bg-gray-100 transition-colors shadow-lg"
+                  className="flex items-center justify-center space-x-2 bg-white text-primary-700 px-8 py-4 rounded-xl font-semibold hover:bg-gray-100 transition-colors shadow-lg"
                 >
                   <Phone className="w-5 h-5" />
-                  <span>Contact Us</span>
+                  <span>{t('contactUs')}</span>
                 </motion.button>
               </Link>
             </motion.div>
@@ -164,25 +165,21 @@ const Home = () => {
       {/* About Section */}
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className={`grid lg:grid-cols-2 gap-12 items-center ${isRTL ? 'lg:flex-row-reverse' : ''}`}>
             <motion.div
-              initial={{ opacity: 0, x: -30 }}
+              initial={{ opacity: 0, x: isRTL ? 30 : -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
             >
-              <span className="text-primary-600 font-semibold mb-4 block">About Us</span>
+              <span className="text-primary-600 font-semibold mb-4 block">{t('aboutUs')}</span>
               <h2 className="text-4xl font-bold text-gray-900 mb-6">
-                Who We Are
+                {t('whoWeAre')}
               </h2>
               <p className="text-gray-600 mb-6 leading-relaxed">
-                Vexora Estates is a premier real estate platform dedicated to connecting buyers with their dream properties. 
-                With over a decade of experience in the Egyptian real estate market, we have established ourselves as trusted 
-                advisors for both local and international clients.
+                {t('aboutText1')}
               </p>
               <p className="text-gray-600 mb-8 leading-relaxed">
-                Our mission is to simplify the property search process by providing comprehensive listings, 
-                detailed information, and expert guidance. Whether you're looking for a family villa, 
-                a beachfront chalet, or a commercial investment, we have the perfect property for you.
+                {t('aboutText2')}
               </p>
               <div className="grid grid-cols-2 gap-4">
                 {features.map((feature, index) => (
@@ -194,8 +191,8 @@ const Home = () => {
                     transition={{ delay: index * 0.1 }}
                     className="flex items-start space-x-3"
                   >
-                    <div className="w-10 h-10 bg-gold-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <feature.icon className="w-5 h-5 text-gold-600" />
+                    <div className="w-10 h-10 bg-primary-50 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <feature.icon className="w-5 h-5 text-primary-600" />
                     </div>
                     <div>
                       <h4 className="font-semibold text-gray-900 mb-1">{feature.title}</h4>
@@ -207,7 +204,7 @@ const Home = () => {
             </motion.div>
 
             <motion.div
-              initial={{ opacity: 0, x: 30 }}
+              initial={{ opacity: 0, x: isRTL ? -30 : 30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               className="relative"
@@ -261,12 +258,12 @@ const Home = () => {
             viewport={{ once: true }}
             className="text-center mb-12"
           >
-            <span className="text-primary-600 font-semibold mb-4 block">Featured Listings</span>
+            <span className="text-primary-600 font-semibold mb-4 block">{t('featuredListings')}</span>
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              Featured Properties
+              {t('featuredProperties')}
             </h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
-              Explore our handpicked selection of premium properties, chosen for their exceptional value and prime locations.
+              {t('featuredDesc')}
             </p>
           </motion.div>
 
@@ -296,8 +293,8 @@ const Home = () => {
                 whileTap={{ scale: 0.95 }}
                 className="inline-flex items-center space-x-2 text-primary-600 font-semibold hover:text-primary-700 transition-colors"
               >
-                <span>View All Properties</span>
-                <ArrowRight className="w-5 h-5" />
+                <span>{t('viewAll')}</span>
+                <ArrowRight className={`w-5 h-5 ${isRTL ? 'rotate-180' : ''}`} />
               </motion.button>
             </Link>
           </motion.div>
@@ -313,10 +310,10 @@ const Home = () => {
             viewport={{ once: true }}
           >
             <h2 className="text-4xl font-bold text-white mb-4">
-              Ready to Find Your Perfect Home?
+              {t('readyToFind')}
             </h2>
             <p className="text-xl text-white/80 mb-8 max-w-2xl mx-auto">
-              Let our experts guide you through the process. Get personalized recommendations based on your preferences.
+              {t('ctaText')}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link to="/units">
@@ -325,7 +322,7 @@ const Home = () => {
                   whileTap={{ scale: 0.95 }}
                   className="bg-white text-primary-600 px-8 py-4 rounded-xl font-semibold hover:bg-gray-100 transition-colors shadow-lg"
                 >
-                  Start Browsing
+                  {t('startBrowsing')}
                 </motion.button>
               </Link>
               <Link to="/contact">
@@ -334,7 +331,7 @@ const Home = () => {
                   whileTap={{ scale: 0.95 }}
                   className="bg-gold-500 text-white px-8 py-4 rounded-xl font-semibold hover:bg-gold-600 transition-colors shadow-lg"
                 >
-                  Schedule a Call
+                  {t('scheduleCall')}
                 </motion.button>
               </Link>
             </div>
