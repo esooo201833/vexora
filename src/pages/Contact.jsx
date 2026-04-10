@@ -146,17 +146,17 @@ const Contact = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1 }}
-                  className="bg-white rounded-2xl p-6 shadow-sm"
+                  className="bg-primary-800 rounded-2xl p-6 shadow-sm"
                 >
-                  <div className="w-12 h-12 bg-primary-50 rounded-xl flex items-center justify-center mb-4">
+                  <div className="w-12 h-12 bg-primary-700 rounded-xl flex items-center justify-center mb-4">
                     <info.icon className="w-6 h-6 text-primary-600" />
                   </div>
-                  <h3 className="font-semibold text-gray-900 mb-1">{info.title}</h3>
-                  <p className="text-gray-600 mb-3">{info.content}</p>
+                  <h3 className="font-semibold text-white mb-1">{info.title}</h3>
+                  <p className="text-gray-300 mb-3">{info.content}</p>
                   {info.action && (
                     <button
                       onClick={info.action}
-                      className="text-primary-600 font-medium hover:text-primary-700 transition-colors"
+                      className="text-gold-400 font-medium hover:text-gold-500 transition-colors"
                     >
                       {info.actionLabel} →
                     </button>
@@ -169,7 +169,7 @@ const Contact = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4 }}
-                className="bg-white rounded-2xl p-6 shadow-sm"
+                className="bg-primary-800 rounded-2xl p-6 shadow-sm"
               >
                 <h3 className="font-semibold text-gray-900 mb-4">{t('quickContact')}</h3>
                 <div className="space-y-3">
@@ -203,7 +203,7 @@ const Contact = () => {
             transition={{ delay: 0.2 }}
             className="lg:col-span-2"
           >
-            <div className="bg-white rounded-2xl shadow-sm p-8">
+            <div className="bg-primary-800 rounded-2xl shadow-sm p-8">
               {isSubmitted ? (
                 <motion.div
                   initial={{ opacity: 0, scale: 0.9 }}
@@ -226,15 +226,15 @@ const Contact = () => {
                 </motion.div>
               ) : (
                 <>
-                  <h2 className="text-2xl font-bold text-gray-900 mb-2">{t('sendMessage')}</h2>
-                  <p className="text-gray-600 mb-8">
+                  <h2 className="text-2xl font-bold text-white mb-2">{t('sendMessage')}</h2>
+                  <p className="text-gray-300 mb-8">
                     {t('contactFormDesc')}
                   </p>
 
                   <form onSubmit={handleSubmit} className="space-y-6">
                     {/* Name */}
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                      <label className="block text-sm font-medium text-gray-300 mb-2">
                         <User className="w-4 h-4 inline mr-2" />
                         {t('fullName')} *
                       </label>
@@ -243,8 +243,8 @@ const Contact = () => {
                         name="name"
                         value={formData.name}
                         onChange={handleChange}
-                        className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors ${
-                          errors.name ? 'border-red-500' : 'border-gray-200'
+                        className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors bg-primary-700 text-white placeholder-gray-400 ${
+                          errors.name ? 'border-red-500' : 'border-gray-600'
                         }`}
                         placeholder={isRTL ? 'أحمد محمد' : 'John Doe'}
                       />
@@ -256,7 +256,7 @@ const Contact = () => {
                     {/* Phone & Unit */}
                     <div className="grid md:grid-cols-2 gap-6">
                       <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">
+                        <label className="block text-sm font-medium text-gray-300 mb-2">
                           <Phone className="w-4 h-4 inline mr-2" />
                           Phone Number *
                         </label>
@@ -265,8 +265,8 @@ const Contact = () => {
                           name="phone"
                           value={formData.phone}
                           onChange={handleChange}
-                          className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors ${
-                            errors.phone ? 'border-red-500' : 'border-gray-200'
+                          className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors bg-primary-700 text-white placeholder-gray-400 ${
+                            errors.phone ? 'border-red-500' : 'border-gray-600'
                           }`}
                           placeholder="+20 123 456 7890"
                         />
@@ -275,7 +275,7 @@ const Contact = () => {
                         )}
                       </div>
                       <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">
+                        <label className="block text-sm font-medium text-gray-300 mb-2">
                           <Building className="w-4 h-4 inline mr-2" />
                           Interested Unit
                         </label>
@@ -284,7 +284,7 @@ const Contact = () => {
                           name="unit"
                           value={formData.unit}
                           onChange={handleChange}
-                          className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors"
+                          className="w-full px-4 py-3 border border-gray-600 bg-primary-700 text-white rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors placeholder-gray-400"
                           placeholder="Property name or ID (optional)"
                         />
                       </div>
@@ -292,7 +292,7 @@ const Contact = () => {
 
                     {/* Message */}
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                      <label className="block text-sm font-medium text-gray-300 mb-2">
                         <FileText className="w-4 h-4 inline mr-2" />
                         Message *
                       </label>
@@ -301,8 +301,8 @@ const Contact = () => {
                         value={formData.message}
                         onChange={handleChange}
                         rows={5}
-                        className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors resize-none ${
-                          errors.message ? 'border-red-500' : 'border-gray-200'
+                        className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors resize-none bg-primary-700 text-white placeholder-gray-400 ${
+                          errors.message ? 'border-red-500' : 'border-gray-600'
                         }`}
                         placeholder="Tell us about your requirements..."
                       />

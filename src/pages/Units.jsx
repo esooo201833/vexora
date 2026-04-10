@@ -119,9 +119,9 @@ const Units = () => {
   const hasActiveFilters = Object.values(filters).some((v) => v !== '');
 
   return (
-    <div className="min-h-screen bg-gray-50 pt-20">
+    <div className="min-h-screen bg-primary-900 pt-20">
       {/* Header */}
-      <div className="bg-white shadow-sm">
+      <div className="bg-primary-800 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <motion.div
             initial={{ opacity: 0, y: -20 }}
@@ -129,20 +129,20 @@ const Units = () => {
             className="flex flex-col md:flex-row md:items-center md:justify-between gap-4"
           >
             <div>
-              <h1 className="text-3xl font-bold text-gray-900">{t('propertyListings')}</h1>
-              <p className="text-gray-600 mt-1">
+              <h1 className="text-3xl font-bold text-white">{t('propertyListings')}</h1>
+              <p className="text-gray-300 mt-1">
                 {filteredUnits.length} {t('propertiesAvailable')}
               </p>
             </div>
             <div className="flex items-center space-x-3">
               {/* View Toggle */}
-              <div className="flex bg-gray-100 rounded-lg p-1">
+              <div className="flex bg-primary-700 rounded-lg p-1">
                 <button
                   onClick={() => setViewMode('grid')}
                   className={`p-2 rounded-md transition-all ${
                     viewMode === 'grid'
-                      ? 'bg-white shadow text-primary-600'
-                      : 'text-gray-500 hover:text-gray-700'
+                      ? 'bg-primary-600 shadow text-white'
+                      : 'text-gray-300 hover:text-white'
                   }`}
                 >
                   <Grid3X3 className="w-5 h-5" />
@@ -151,8 +151,8 @@ const Units = () => {
                   onClick={() => setViewMode('list')}
                   className={`p-2 rounded-md transition-all ${
                     viewMode === 'list'
-                      ? 'bg-white shadow text-primary-600'
-                      : 'text-gray-500 hover:text-gray-700'
+                      ? 'bg-primary-600 shadow text-white'
+                      : 'text-gray-300 hover:text-white'
                   }`}
                 >
                   <List className="w-5 h-5" />
@@ -181,9 +181,9 @@ const Units = () => {
               showFilters ? 'block' : 'hidden lg:block'
             }`}
           >
-            <div className="bg-white rounded-2xl shadow-sm p-6 sticky top-24">
+            <div className="bg-primary-800 rounded-2xl shadow-sm p-6 sticky top-24">
               <div className="flex items-center justify-between mb-6">
-                <h2 className="font-semibold text-gray-900">{t('filters')}</h2>
+                <h2 className="font-semibold text-white">{t('filters')}</h2>
                 {hasActiveFilters && (
                   <button
                     onClick={clearFilters}
@@ -197,7 +197,7 @@ const Units = () => {
 
               {/* Search */}
               <div className="mb-6">
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-gray-300 mb-2">
                   {t('search')}
                 </label>
                 <div className="relative">
@@ -207,14 +207,14 @@ const Units = () => {
                     value={filters.search}
                     onChange={(e) => handleFilterChange('search', e.target.value)}
                     placeholder={t('searchProperties')}
-                    className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                    className="w-full pl-10 pr-4 py-2 border border-gray-600 bg-primary-700 text-white rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent placeholder-gray-400"
                   />
                 </div>
               </div>
 
               {/* Price Range */}
               <div className="mb-6">
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-gray-300 mb-2">
                   {t('priceRange')}
                 </label>
                 <div className="flex space-x-2">
@@ -223,27 +223,27 @@ const Units = () => {
                     value={filters.minPrice}
                     onChange={(e) => handleFilterChange('minPrice', e.target.value)}
                     placeholder={t('min')}
-                    className="w-1/2 px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary-500"
+                    className="w-1/2 px-3 py-2 border border-gray-600 bg-primary-700 text-white rounded-lg focus:ring-2 focus:ring-primary-500 placeholder-gray-400"
                   />
                   <input
                     type="number"
                     value={filters.maxPrice}
                     onChange={(e) => handleFilterChange('maxPrice', e.target.value)}
                     placeholder={t('max')}
-                    className="w-1/2 px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary-500"
+                    className="w-1/2 px-3 py-2 border border-gray-600 bg-primary-700 text-white rounded-lg focus:ring-2 focus:ring-primary-500 placeholder-gray-400"
                   />
                 </div>
               </div>
 
               {/* City */}
               <div className="mb-6">
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-gray-300 mb-2">
                   {t('city')}
                 </label>
                 <select
                   value={filters.city}
                   onChange={(e) => handleFilterChange('city', e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                  className="w-full px-3 py-2 border border-gray-600 bg-primary-700 text-white rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                 >
                   <option value="">{t('allCities')}</option>
                   {cities.map((city) => (
@@ -256,13 +256,13 @@ const Units = () => {
 
               {/* Type */}
               <div className="mb-6">
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-gray-300 mb-2">
                   {t('propertyType')}
                 </label>
                 <select
                   value={filters.type}
                   onChange={(e) => handleFilterChange('type', e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                  className="w-full px-3 py-2 border border-gray-600 bg-primary-700 text-white rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                 >
                   <option value="">{t('allTypes')}</option>
                   {types.map((type) => (
@@ -275,13 +275,13 @@ const Units = () => {
 
               {/* Bedrooms */}
               <div className="mb-6">
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-gray-300 mb-2">
                   {t('minBedrooms')}
                 </label>
                 <select
                   value={filters.bedrooms}
                   onChange={(e) => handleFilterChange('bedrooms', e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                  className="w-full px-3 py-2 border border-gray-600 bg-primary-700 text-white rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                 >
                   <option value="">{t('any')}</option>
                   <option value="1">1+</option>
@@ -293,13 +293,13 @@ const Units = () => {
 
               {/* Status */}
               <div className="mb-6">
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-gray-300 mb-2">
                   {t('status')}
                 </label>
                 <select
                   value={filters.status}
                   onChange={(e) => handleFilterChange('status', e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                  className="w-full px-3 py-2 border border-gray-600 bg-primary-700 text-white rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                 >
                   <option value="">{t('allStatus')}</option>
                   <option value="Ready to Move">{t('readyToMove')}</option>

@@ -175,7 +175,7 @@ const Admin = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 pt-20">
+    <div className="min-h-screen bg-primary-900 pt-20">
       {/* Header */}
       <div className="bg-gradient-to-r from-primary-600 to-primary-800 py-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
@@ -207,7 +207,7 @@ const Admin = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1 }}
-              className="bg-white rounded-xl p-6 shadow-sm"
+              className="bg-primary-800 rounded-xl p-6 shadow-sm"
             >
               <div className={`w-12 h-12 ${stat.color} rounded-xl flex items-center justify-center mb-4`}>
                 <stat.icon className="w-6 h-6 text-white" />
@@ -219,7 +219,7 @@ const Admin = () => {
         </div>
 
         {/* Tabs */}
-        <div className="bg-white rounded-xl shadow-sm mb-6">
+        <div className="bg-primary-800 rounded-xl shadow-sm mb-6">
           <div className="flex border-b">
             {[
               { id: 'messages', label: 'Messages', icon: MessageSquare },
@@ -231,7 +231,7 @@ const Admin = () => {
                 className={`flex items-center space-x-2 px-6 py-4 font-medium transition-colors ${
                   activeTab === tab.id 
                     ? 'text-primary-600 border-b-2 border-primary-600' 
-                    : 'text-gray-600 hover:text-gray-900'
+                    : 'text-gray-300 hover:text-white'
                 }`}
               >
                 <tab.icon className="w-5 h-5" />
@@ -295,7 +295,7 @@ const Admin = () => {
                       <div className="flex space-x-2 ml-4">
                         <Link 
                           to={`/unit/${units.find(u => u.title === message.unit)?.id || ''}`}
-                          className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
+                          className="p-2 text-blue-400 hover:bg-primary-700 rounded-lg transition-colors"
                           title="View Unit"
                         >
                           <Eye className="w-5 h-5" />
@@ -303,7 +303,7 @@ const Admin = () => {
                         {message.status === 'unread' && (
                           <button 
                             onClick={(e) => { e.stopPropagation(); markAsRead(message.id); }}
-                            className="p-2 text-green-600 hover:bg-green-50 rounded-lg transition-colors"
+                            className="p-2 text-green-400 hover:bg-primary-700 rounded-lg transition-colors"
                             title="Mark as Read"
                           >
                             <CheckCircle className="w-5 h-5" />
@@ -311,7 +311,7 @@ const Admin = () => {
                         )}
                         <button 
                           onClick={(e) => { e.stopPropagation(); deleteMessage(message.id); }}
-                          className="p-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors"
+                          className="p-2 text-red-400 hover:bg-primary-700 rounded-lg transition-colors"
                           title="Delete"
                         >
                           <Trash2 className="w-5 h-5" />
