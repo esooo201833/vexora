@@ -6,7 +6,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Phone, Globe, Camera, Briefcase, MessageCircle, Home, Building2, PhoneCall } from 'lucide-react';
+import { Phone, Globe, Camera, Briefcase, MessageCircle, Home, Building2, PhoneCall, Settings } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 
 const Footer = () => {
@@ -17,6 +17,7 @@ const Footer = () => {
     { to: '/', label: t('home'), icon: Home },
     { to: '/units', label: t('browseUnits'), icon: Building2 },
     { to: '/contact', label: t('contactUs'), icon: PhoneCall },
+    { to: '/admin', label: t('admin'), icon: Settings },
   ];
 
   const propertyTypes = [
