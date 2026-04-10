@@ -94,15 +94,15 @@ const Contact = () => {
   const contactInfo = [
     {
       icon: Phone,
-      title: 'Phone / WhatsApp',
+      title: t('phoneWhatsApp'),
       content: '+20 111 018 2114',
       action: handleCall,
-      actionLabel: 'Call Now',
+      actionLabel: t('callNow'),
     },
     {
       icon: Clock,
-      title: 'Working Hours',
-      content: 'Sun - Thu: 9:00 AM - 6:00 PM',
+      title: t('workingHours'),
+      content: t('sunThu'),
       action: null,
       actionLabel: null,
     },
@@ -118,7 +118,7 @@ const Contact = () => {
             animate={{ opacity: 1, y: 0 }}
             className="text-4xl md:text-5xl font-bold text-white mb-4"
           >
-            Contact Us
+            {t('contactUs')}
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -126,7 +126,7 @@ const Contact = () => {
             transition={{ delay: 0.1 }}
             className="text-xl text-white/80 max-w-2xl mx-auto"
           >
-            Get in touch with our team for inquiries about properties or any questions you may have.
+            {t('contactDesc')}
           </motion.p>
         </div>
       </div>
@@ -171,7 +171,7 @@ const Contact = () => {
                 transition={{ delay: 0.4 }}
                 className="bg-white rounded-2xl p-6 shadow-sm"
               >
-                <h3 className="font-semibold text-gray-900 mb-4">Quick Contact</h3>
+                <h3 className="font-semibold text-gray-900 mb-4">{t('quickContact')}</h3>
                 <div className="space-y-3">
                   <motion.button
                     whileHover={{ scale: 1.02 }}
@@ -180,7 +180,7 @@ const Contact = () => {
                     className="w-full flex items-center justify-center space-x-2 bg-green-500 text-white py-3 rounded-xl font-semibold hover:bg-green-600 transition-colors"
                   >
                     <MessageCircle className="w-5 h-5" />
-                    <span>WhatsApp</span>
+                    <span>{t('whatsapp')}</span>
                   </motion.button>
                   <motion.button
                     whileHover={{ scale: 1.02 }}
@@ -189,7 +189,7 @@ const Contact = () => {
                     className="w-full flex items-center justify-center space-x-2 bg-primary-600 text-white py-3 rounded-xl font-semibold hover:bg-primary-700 transition-colors"
                   >
                     <Phone className="w-5 h-5" />
-                    <span>Call Now</span>
+                    <span>{t('callNow')}</span>
                   </motion.button>
                 </div>
               </motion.div>
@@ -213,22 +213,22 @@ const Contact = () => {
                   <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
                     <CheckCircle className="w-10 h-10 text-green-600" />
                   </div>
-                  <h2 className="text-2xl font-bold text-gray-900 mb-2">Message Sent!</h2>
+                  <h2 className="text-2xl font-bold text-gray-900 mb-2">{isRTL ? 'تم إرسال الرسالة!' : 'Message Sent!'}</h2>
                   <p className="text-gray-600 mb-6">
-                    Thank you for contacting us. We'll get back to you within 24 hours.
+                    {isRTL ? 'شكراً لتواصلك معنا. سنتواصل معك خلال 24 ساعة.' : 'Thank you for contacting us. We\'ll get back to you within 24 hours.'}
                   </p>
                   <button
                     onClick={() => setIsSubmitted(false)}
                     className="btn-primary"
                   >
-                    Send Another Message
+                    {isRTL ? 'إرسال رسالة أخرى' : 'Send Another Message'}
                   </button>
                 </motion.div>
               ) : (
                 <>
-                  <h2 className="text-2xl font-bold text-gray-900 mb-2">Send us a Message</h2>
+                  <h2 className="text-2xl font-bold text-gray-900 mb-2">{t('sendMessage')}</h2>
                   <p className="text-gray-600 mb-8">
-                    Fill out the form below and we'll get back to you as soon as possible.
+                    {t('contactFormDesc')}
                   </p>
 
                   <form onSubmit={handleSubmit} className="space-y-6">
@@ -236,7 +236,7 @@ const Contact = () => {
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">
                         <User className="w-4 h-4 inline mr-2" />
-                        Full Name *
+                        {t('fullName')} *
                       </label>
                       <input
                         type="text"
@@ -246,7 +246,7 @@ const Contact = () => {
                         className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors ${
                           errors.name ? 'border-red-500' : 'border-gray-200'
                         }`}
-                        placeholder="John Doe"
+                        placeholder={isRTL ? 'أحمد محمد' : 'John Doe'}
                       />
                       {errors.name && (
                         <p className="text-red-500 text-sm mt-1">{errors.name}</p>
