@@ -9,9 +9,11 @@ import { motion } from 'framer-motion';
 import { Search, Filter, Grid3X3, List, X } from 'lucide-react';
 import UnitCard from '../components/UnitCard';
 import { units, getTypes, getCities } from '../data/units';
+import { useLanguage } from '../context/LanguageContext';
 
 const Units = () => {
   const location = useLocation();
+  const { t } = useLanguage();
   const [filteredUnits, setFilteredUnits] = useState(units);
   const [viewMode, setViewMode] = useState('grid');
   const [showFilters, setShowFilters] = useState(false);
@@ -127,9 +129,9 @@ const Units = () => {
             className="flex flex-col md:flex-row md:items-center md:justify-between gap-4"
           >
             <div>
-              <h1 className="text-3xl font-bold text-gray-900">Property Listings</h1>
+              <h1 className="text-3xl font-bold text-gray-900">{t('propertyListings')}</h1>
               <p className="text-gray-600 mt-1">
-                {filteredUnits.length} properties available
+                {filteredUnits.length} {t('propertiesAvailable')}
               </p>
             </div>
             <div className="flex items-center space-x-3">
@@ -162,7 +164,7 @@ const Units = () => {
                 className="md:hidden flex items-center space-x-2 px-4 py-2 bg-primary-600 text-white rounded-lg"
               >
                 <Filter className="w-4 h-4" />
-                <span>Filters</span>
+                <span>{t('filters')}</span>
               </button>
             </div>
           </motion.div>
@@ -181,14 +183,14 @@ const Units = () => {
           >
             <div className="bg-white rounded-2xl shadow-sm p-6 sticky top-24">
               <div className="flex items-center justify-between mb-6">
-                <h2 className="font-semibold text-gray-900">Filters</h2>
+                <h2 className="font-semibold text-gray-900">{t('filters')}</h2>
                 {hasActiveFilters && (
                   <button
                     onClick={clearFilters}
                     className="text-sm text-red-500 hover:text-red-600 flex items-center"
                   >
                     <X className="w-4 h-4 mr-1" />
-                    Clear
+                    {t('clear')}
                   </button>
                 )}
               </div>
@@ -196,7 +198,7 @@ const Units = () => {
               {/* Search */}
               <div className="mb-6">
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Search
+                  {t('search')}
                 </label>
                 <div className="relative">
                   <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
@@ -204,7 +206,7 @@ const Units = () => {
                     type="text"
                     value={filters.search}
                     onChange={(e) => handleFilterChange('search', e.target.value)}
-                    placeholder="Search properties..."
+                    placeholder={t('searchProperties')}
                     className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                   />
                 </div>
@@ -213,21 +215,21 @@ const Units = () => {
               {/* Price Range */}
               <div className="mb-6">
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Price Range (EGP)
+                  {t('priceRange')}
                 </label>
                 <div className="flex space-x-2">
                   <input
                     type="number"
                     value={filters.minPrice}
                     onChange={(e) => handleFilterChange('minPrice', e.target.value)}
-                    placeholder="Min"
+                    placeholder={t('min')}
                     className="w-1/2 px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary-500"
                   />
                   <input
                     type="number"
                     value={filters.maxPrice}
                     onChange={(e) => handleFilterChange('maxPrice', e.target.value)}
-                    placeholder="Max"
+                    placeholder={t('max')}
                     className="w-1/2 px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary-500"
                   />
                 </div>
@@ -236,14 +238,14 @@ const Units = () => {
               {/* City */}
               <div className="mb-6">
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  City
+                  {t('city')}
                 </label>
                 <select
                   value={filters.city}
                   onChange={(e) => handleFilterChange('city', e.target.value)}
                   className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                 >
-                  <option value="">All Cities</option>
+                  <option value="">{t('allCities')}</option>
                   {cities.map((city) => (
                     <option key={city} value={city}>
                       {city}
@@ -255,14 +257,14 @@ const Units = () => {
               {/* Type */}
               <div className="mb-6">
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Property Type
+                  {t('propertyType')}
                 </label>
                 <select
                   value={filters.type}
                   onChange={(e) => handleFilterChange('type', e.target.value)}
                   className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                 >
-                  <option value="">All Types</option>
+                  <option value="">{t('allTypes')}</option>
                   {types.map((type) => (
                     <option key={type} value={type}>
                       {type}
@@ -274,14 +276,14 @@ const Units = () => {
               {/* Bedrooms */}
               <div className="mb-6">
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Min Bedrooms
+                  {t('minBedrooms')}
                 </label>
                 <select
                   value={filters.bedrooms}
                   onChange={(e) => handleFilterChange('bedrooms', e.target.value)}
                   className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                 >
-                  <option value="">Any</option>
+                  <option value="">{t('any')}</option>
                   <option value="1">1+</option>
                   <option value="2">2+</option>
                   <option value="3">3+</option>
@@ -292,16 +294,16 @@ const Units = () => {
               {/* Status */}
               <div className="mb-6">
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Status
+                  {t('status')}
                 </label>
                 <select
                   value={filters.status}
                   onChange={(e) => handleFilterChange('status', e.target.value)}
                   className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                 >
-                  <option value="">All Status</option>
-                  <option value="Ready to Move">Ready to Move</option>
-                  <option value="Under Construction">Under Construction</option>
+                  <option value="">{t('allStatus')}</option>
+                  <option value="Ready to Move">{t('readyToMove')}</option>
+                  <option value="Under Construction">{t('underConstruction')}</option>
                 </select>
               </div>
             </div>
@@ -319,16 +321,16 @@ const Units = () => {
                   <Search className="w-12 h-12 text-gray-400" />
                 </div>
                 <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                  No properties found
+                  {t('noPropertiesFound')}
                 </h3>
                 <p className="text-gray-600 mb-4">
-                  Try adjusting your filters to see more results.
+                  {t('adjustFilters')}
                 </p>
                 <button
                   onClick={clearFilters}
                   className="text-primary-600 font-semibold hover:text-primary-700"
                 >
-                  Clear all filters
+                  {t('clearAllFilters')}
                 </button>
               </motion.div>
             ) : (
