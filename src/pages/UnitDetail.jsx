@@ -13,10 +13,12 @@ import {
 } from 'lucide-react';
 import ImageGallery from '../components/ImageGallery';
 import { getUnitById, formatPrice } from '../data/units';
+import { useLanguage } from '../context/LanguageContext';
 
 const UnitDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const { t, isRTL } = useLanguage();
   const unit = getUnitById(id);
   const [isLiked, setIsLiked] = useState(false);
   const [activeTab, setActiveTab] = useState('overview');
@@ -25,11 +27,11 @@ const UnitDetail = () => {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-50 pt-20">
         <div className="text-center">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">Property Not Found</h1>
-          <p className="text-gray-600 mb-6">The property you're looking for doesn't exist.</p>
+          <h1 className="text-4xl font-bold text-gray-900 mb-4">{isRTL ? 'الوحدة غير موجودة' : 'Property Not Found'}</h1>
+          <p className="text-gray-600 mb-6">{isRTL ? 'الوحدة التي تبحث عنها غير موجودة.' : 'The property you\'re looking for doesn\'t exist.'}</p>
           <Link to="/units">
             <button className="btn-primary">
-              Browse Properties
+              {isRTL ? 'تصفح العقارات' : 'Browse Properties'}
             </button>
           </Link>
         </div>
@@ -149,22 +151,22 @@ const UnitDetail = () => {
               <div className="bg-white rounded-xl p-4 shadow-sm text-center">
                 <Bed className="w-6 h-6 mx-auto mb-2 text-primary-600" />
                 <p className="text-2xl font-bold text-gray-900">{unit.bedrooms}</p>
-                <p className="text-sm text-gray-600">Bedrooms</p>
+                <p className="text-sm text-gray-600">{isRTL ? 'غرف نوم' : 'Bedrooms'}</p>
               </div>
               <div className="bg-white rounded-xl p-4 shadow-sm text-center">
                 <Bath className="w-6 h-6 mx-auto mb-2 text-primary-600" />
                 <p className="text-2xl font-bold text-gray-900">{unit.bathrooms}</p>
-                <p className="text-sm text-gray-600">Bathrooms</p>
+                <p className="text-sm text-gray-600">{isRTL ? 'حمامات' : 'Bathrooms'}</p>
               </div>
               <div className="bg-white rounded-xl p-4 shadow-sm text-center">
                 <Maximize className="w-6 h-6 mx-auto mb-2 text-primary-600" />
                 <p className="text-2xl font-bold text-gray-900">{unit.size}</p>
-                <p className="text-sm text-gray-600">Sq. Meters</p>
+                <p className="text-sm text-gray-600">{isRTL ? 'م²' : 'Sq. Meters'}</p>
               </div>
               <div className="bg-white rounded-xl p-4 shadow-sm text-center">
                 <Home className="w-6 h-6 mx-auto mb-2 text-primary-600" />
                 <p className="text-2xl font-bold text-gray-900">{unit.rooms}</p>
-                <p className="text-sm text-gray-600">Total Rooms</p>
+                <p className="text-sm text-gray-600">{isRTL ? 'إجمالي الغرف' : 'Total Rooms'}</p>
               </div>
             </motion.div>
 
@@ -176,17 +178,21 @@ const UnitDetail = () => {
               className="bg-white rounded-2xl shadow-sm overflow-hidden"
             >
               <div className="flex border-b border-gray-200">
-                {['overview', 'features', 'payment'].map((tab) => (
+                {[
+                  { key: 'overview', label: isRTL ? 'نظرة عامة' : 'Overview' },
+                  { key: 'features', label: isRTL ? 'المميزات' : 'Features' },
+                  { key: 'payment', label: isRTL ? 'الدفع' : 'Payment' },
+                ].map((tab) => (
                   <button
-                    key={tab}
-                    onClick={() => setActiveTab(tab)}
+                    key={tab.key}
+                    onClick={() => setActiveTab(tab.key)}
                     className={`flex-1 py-4 px-6 font-medium capitalize transition-colors ${
-                      activeTab === tab
+                      activeTab === tab.key
                         ? 'text-primary-600 border-b-2 border-primary-600 bg-primary-50'
                         : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
                     }`}
                   >
-                    {tab}
+                    {tab.label}
                   </button>
                 ))}
               </div>
@@ -199,37 +205,37 @@ const UnitDetail = () => {
                     className="space-y-6"
                   >
                     <div>
-                      <h3 className="text-xl font-semibold text-gray-900 mb-3">Description</h3>
+                      <h3 className="text-xl font-semibold text-gray-900 mb-3">{isRTL ? 'الوصف' : 'Description'}</h3>
                       <p className="text-gray-600 leading-relaxed">{unit.description}</p>
                     </div>
                     <div className="grid md:grid-cols-2 gap-4">
                       <div className="flex items-center space-x-3">
                         <Building className="w-5 h-5 text-primary-600" />
                         <div>
-                          <p className="text-sm text-gray-500">Developer</p>
+                          <p className="text-sm text-gray-500">{isRTL ? 'المطور' : 'Developer'}</p>
                           <p className="font-medium text-gray-900">{unit.developer}</p>
                         </div>
                       </div>
                       <div className="flex items-center space-x-3">
                         <Calendar className="w-5 h-5 text-primary-600" />
                         <div>
-                          <p className="text-sm text-gray-500">Delivery Date</p>
+                          <p className="text-sm text-gray-500">{isRTL ? 'تاريخ التسليم' : 'Delivery Date'}</p>
                           <p className="font-medium text-gray-900">
-                            {unit.deliveryDate === 'Ready' ? 'Ready to Move' : unit.deliveryDate}
+                            {unit.deliveryDate === 'Ready' ? (isRTL ? 'جاهز للتسليم' : 'Ready to Move') : unit.deliveryDate}
                           </p>
                         </div>
                       </div>
                       <div className="flex items-center space-x-3">
                         <CheckCircle className="w-5 h-5 text-primary-600" />
                         <div>
-                          <p className="text-sm text-gray-500">Finishing</p>
+                          <p className="text-sm text-gray-500">{isRTL ? 'التشطيب' : 'Finishing'}</p>
                           <p className="font-medium text-gray-900">{unit.finishing}</p>
                         </div>
                       </div>
                       <div className="flex items-center space-x-3">
                         <User className="w-5 h-5 text-primary-600" />
                         <div>
-                          <p className="text-sm text-gray-500">Property ID</p>
+                          <p className="text-sm text-gray-500">{isRTL ? 'رقم الوحدة' : 'Property ID'}</p>
                           <p className="font-medium text-gray-900">#{unit.id}</p>
                         </div>
                       </div>
@@ -242,7 +248,7 @@ const UnitDetail = () => {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                   >
-                    <h3 className="text-xl font-semibold text-gray-900 mb-4">Property Features</h3>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-4">{isRTL ? 'مميزات الوحدة' : 'Property Features'}</h3>
                     <div className="grid md:grid-cols-2 gap-3">
                       {unit.features.map((feature, index) => (
                         <motion.div
@@ -269,25 +275,24 @@ const UnitDetail = () => {
                     className="space-y-6"
                   >
                     <div className="bg-primary-50 rounded-xl p-6">
-                      <h3 className="text-xl font-semibold text-gray-900 mb-4">Payment Plan</h3>
+                      <h3 className="text-xl font-semibold text-gray-900 mb-4">{isRTL ? 'نظام الدفع' : 'Payment Plan'}</h3>
                       <div className="flex items-start space-x-3">
                         <FileText className="w-6 h-6 text-primary-600 mt-1" />
                         <div>
                           <p className="font-medium text-gray-900 text-lg">{unit.paymentPlan}</p>
                           <p className="text-gray-600 mt-2">
-                            Flexible payment options available. Contact us for more details about 
-                            financing and installment plans.
+                            {isRTL ? 'خيارات دفع مرنة متاحة. تواصل معنا لمزيد من التفاصيل حول التموير وخطط الأقساط.' : 'Flexible payment options available. Contact us for more details about financing and installment plans.'}
                           </p>
                         </div>
                       </div>
                     </div>
                     <div className="grid md:grid-cols-2 gap-4">
                       <div className="p-4 border border-gray-200 rounded-xl">
-                        <p className="text-sm text-gray-500 mb-1">Total Price</p>
+                        <p className="text-sm text-gray-500 mb-1">{isRTL ? 'السعر الإجمالي' : 'Total Price'}</p>
                         <p className="text-2xl font-bold text-primary-600">{formatPrice(unit.price)}</p>
                       </div>
                       <div className="p-4 border border-gray-200 rounded-xl">
-                        <p className="text-sm text-gray-500 mb-1">Price per Sqm</p>
+                        <p className="text-sm text-gray-500 mb-1">{isRTL ? 'السعر لكل م²' : 'Price per Sqm'}</p>
                         <p className="text-2xl font-bold text-gray-900">
                           {formatPrice(Math.round(unit.price / unit.size))}
                         </p>
@@ -320,7 +325,7 @@ const UnitDetail = () => {
                     className="w-full flex items-center justify-center space-x-2 bg-green-500 text-white py-3 rounded-xl font-semibold hover:bg-green-600 transition-colors"
                   >
                     <MessageCircle className="w-5 h-5" />
-                    <span>WhatsApp Inquiry</span>
+                    <span>{isRTL ? 'استفسار واتساب' : 'WhatsApp Inquiry'}</span>
                   </motion.button>
                   
                   <motion.button
@@ -330,7 +335,7 @@ const UnitDetail = () => {
                     className="w-full flex items-center justify-center space-x-2 bg-primary-600 text-white py-3 rounded-xl font-semibold hover:bg-primary-700 transition-colors"
                   >
                     <Phone className="w-5 h-5" />
-                    <span>Call Now</span>
+                    <span>{isRTL ? 'اتصل الآن' : 'Call Now'}</span>
                   </motion.button>
                   
                   <Link to="/contact" state={{ unitId: unit.id, unitTitle: unit.title }}>
@@ -340,7 +345,7 @@ const UnitDetail = () => {
                       className="w-full flex items-center justify-center space-x-2 bg-gold-500 text-white py-3 rounded-xl font-semibold hover:bg-gold-600 transition-colors"
                     >
                       <Mail className="w-5 h-5" />
-                      <span>Send Inquiry</span>
+                      <span>{isRTL ? 'إرسال استفسار' : 'Send Inquiry'}</span>
                     </motion.button>
                   </Link>
                 </div>
