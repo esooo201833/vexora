@@ -6,13 +6,15 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Home, Building2, Phone, Search } from 'lucide-react';
+import { Menu, X, Home, Building2, Phone, Search, Globe } from 'lucide-react';
 import Logo from './Logo';
+import { useLanguage } from '../context/LanguageContext';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
+  const { language, toggleLanguage, t, isRTL } = useLanguage();
 
   // Handle scroll effect
   useEffect(() => {
@@ -29,10 +31,10 @@ const Navbar = () => {
   }, [location]);
 
   const navLinks = [
-    { to: '/', label: 'Home', icon: Home },
-    { to: '/units', label: 'Units', icon: Building2 },
-    { to: '/contact', label: 'Contact', icon: Phone },
-    { to: '/admin', label: 'Admin', icon: Building2 },
+    { to: '/', label: t('home'), icon: Home },
+    { to: '/units', label: t('units'), icon: Building2 },
+    { to: '/contact', label: t('contact'), icon: Phone },
+    { to: '/admin', label: t('admin'), icon: Building2 },
   ];
 
   const isActive = (path) => location.pathname === path;
@@ -89,6 +91,18 @@ const Navbar = () => {
               ))}
             </div>
 
+            {/* Language Toggle */}
+            <button
+              onClick={toggleLanguage}
+              className={`p-2 rounded-lg transition-colors ${
+                isScrolled ? 'text-gray-700 hover:bg-gray-100' : 'text-white hover:bg-white/10'
+              }`}
+              title={language === 'en' ? t('arabic') : t('english')}
+            >
+              <Globe className="w-5 h-5" />
+              <span className="ml-1 text-sm font-medium">{language === 'en' ? 'AR' : 'EN'}</span>
+            </button>
+
             {/* CTA Button */}
             <div className="hidden md:block">
               <Link to="/units">
@@ -102,7 +116,7 @@ const Navbar = () => {
                   }`}
                 >
                   <Search className="w-4 h-4" />
-                  <span>Find Property</span>
+                  <span>{t('findProperty')}</span>
                 </motion.button>
               </Link>
             </div>
